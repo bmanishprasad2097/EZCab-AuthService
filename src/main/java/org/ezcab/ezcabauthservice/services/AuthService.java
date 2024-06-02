@@ -4,6 +4,7 @@ import org.ezcab.ezcabauthservice.dto.PassengerDto;
 import org.ezcab.ezcabauthservice.dto.PassengerSignupRequestDto;
 import org.ezcab.ezcabauthservice.models.Passenger;
 import org.ezcab.ezcabauthservice.repositories.PassengerRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,8 +12,11 @@ public class AuthService {
 
     private final PassengerRepository passengerRepository;
 
-    public AuthService(PassengerRepository passengerRepository) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public AuthService(PassengerRepository passengerRepository , BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.passengerRepository = passengerRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     public PassengerDto signupPassenger(PassengerSignupRequestDto passengerSignupRequestDto) {
@@ -23,7 +27,7 @@ public class AuthService {
                 .phoneNumber(passengerSignupRequestDto.getPhoneNumber())
                 .build();
 
-        passengerRepository.save(passenger);
-        return passengerSignupRequestDto;
+        Passenger newPassenger = passengerRepository.save(passenger);
+        return PassengerDto.fromPassenger(newPassenger);
     }
 }

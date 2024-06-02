@@ -24,4 +24,15 @@ public class PassengerDto {
 
     private Date createdAt;
 
+    public static PassengerDto fromPassenger(Passenger passenger) {
+        return PassengerDto.builder()
+                .id(passenger.getId().toString())
+                .createdAt(passenger.getCreatedAt())
+                .name(passenger.getName())
+                .email(passenger.getEmail())
+                .password(passenger.getPassword())
+                .phoneNumber(passenger.getPhoneNumber())
+                .build();
+
+    }
 }

@@ -17,7 +17,7 @@ public abstract class BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id;
+    protected Long id;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

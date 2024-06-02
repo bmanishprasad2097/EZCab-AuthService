@@ -5,10 +5,7 @@ import org.ezcab.ezcabauthservice.dto.PassengerSignupRequestDto;
 import org.ezcab.ezcabauthservice.services.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -26,7 +23,7 @@ public class AuthController {
         return new ResponseEntity<>(response , HttpStatus.CREATED);
     }
 
-    @PostMapping("/signup/passengers")
+    @GetMapping("/signup/passengers")
     String response(){
         return "Successfully Booked!!!";
     }
